@@ -48,8 +48,6 @@ class IOGeneric {
     
     static def chooseFromMap(def map) {
         int index = chooseFromList(map.keySet())
-        println "index is: " + index 
-        println "values are: " + map.values()
-        return map.values()[index]
+        return map.values().toList()[index]
     }
 }

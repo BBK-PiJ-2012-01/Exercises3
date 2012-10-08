@@ -38,11 +38,14 @@ class FPU {
 
 class Calculator {
     private static def operands = [
-                            "Add":{a, b -> a+b}, 
-                            "Subtract":{a, b -> a-b}, 
-                            "Multiply":{a, b -> a*b}, 
-                            "Divide":{a, b -> a/b}
-                            ] 
+                            Add:{a, b -> a+b}, 
+                            Subtract:{a, b -> a-b}, 
+                            Multiply:{a, b -> a*b}, 
+                            Divide:{a, b -> a/b}
+                            ]
+    private static def algebra = [
+                            "*":operands["Add"]
+                            ]
     
     void operateFromMenu() {
         print "Type the first number: "
