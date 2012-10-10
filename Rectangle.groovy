@@ -3,6 +3,7 @@ class Rectangle {
     static enum POS {   
         IN, OUT, BORDER
     }
+    String name = ""
     
     Rectangle(MyVector new_upLeft, MyVector new_downRight) {
         upLeft = new_upLeft
@@ -48,14 +49,28 @@ class Rectangle {
     
     Rectangle intersection(Rectangle other) {
         def key_points = [upLeft, downRight, other.upLeft, other.downRight]
-        y_coords = key_points*.y.sort()
-        x_coords = key_points*.x.sort()
+        double[] y_coords = key_points*.y.sort()
+        double[] x_coords = key_points*.x.sort()
         
         MyVector int_upLeft = new MyVector(x_coords[1], y_coords[2])
-        MyVector int_downRight = new MyVector(x_coords[2], y_coords[3])
+        MyVector int_downRight = new MyVector(x_coords[2], y_coords[1])
         
-        return new Rectangle(int_upLeft, int_downRight)
+        double mid_x = (x_coords[2]-x_coords[1])/2 + x_coords[1]
+        double mid_y = (y_coords[2]-y_coords[1])/2 + y_coords[1]
+        MyVector midpoint = new MyVector(mid_x, mid_y)
+        
+        Rectangle rect_intersection = new Rectangle(int_upLeft, int_downRight)
+        rect_intersection.name = "Overlap of " + name + " and " + other.name
+        
+        if (rect_intersection.getPosition(midpoint) != POS.IN)
+            throw new InvalidIntersection()
+        
+        return rect_intersection
     }
 }
     
-    
+class InvalidIntersection extends Exception {
+    InvalidIntersection() {
+        println "======= There is no intersection. ======="
+    }
+}

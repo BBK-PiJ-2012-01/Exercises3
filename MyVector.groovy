@@ -74,9 +74,4 @@ class MyVector {
         other.x = x
         x = temp
     }
-    
-    void swapXY(MyVector other) {
-        swapX(other)
-        swapY(other)
-    }
 }
