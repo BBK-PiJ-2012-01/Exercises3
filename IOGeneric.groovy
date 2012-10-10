@@ -50,4 +50,11 @@ class IOGeneric {
         int index = chooseFromList(map.keySet())
         return map.values().toList()[index]
     }
+    
+    static def getChar() {
+        String str = System.console().readLine()
+        if (str.length() != 1)
+            throw new BadInput(str)
+        return str[0]
+    }
 }
