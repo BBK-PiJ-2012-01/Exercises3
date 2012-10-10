@@ -1,6 +1,6 @@
 class BadInput extends Exception {
     BadInput(def value) {
-        println "======= Input of \"" + value + "\" is not appropriate. ========"
+        println "======= Input error: \"" + value + "\" ========"
     }
     
     BadInput() {
