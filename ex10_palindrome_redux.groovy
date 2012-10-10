@@ -8,7 +8,7 @@ String condensed_str = ""
 
 for (ch in str.getChars()) {
     if (ch.isLetter())
-        condensed_str << ch
+        condensed_str += (ch)
 }
 
 if (condensed_str.reverse() == condensed_str)
