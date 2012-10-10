@@ -1,13 +1,16 @@
-class Vector {
+class MyVector {
     double x, y
+    static enum BOOL {
+        TRUE, BORDER, FALSE
+    }
     
-    Vector(double new_x, double new_y) {
+    MyVector(double new_x, double new_y) {
         x = new_x
         y = new_y
     }
     
-    Vector minus(Vector right) {
-        return new Vector(x-right.x, y-right.y)
+    MyVector minus(MyVector right) {
+        return new MyVector(x-right.x, y-right.y)
     }
     
     double length() {
@@ -18,14 +21,14 @@ class Vector {
         return x + ", " + y
     }
     
-    static Vector[] getShortestVectorsFromRef(def vectors, Vector ref) {
+    static MyVector[] getShortestVectorsFromRef(def vectors, MyVector ref) {
         if (vectors.size() < 1)
             throw BadInput("I need more vectors!")
             
         def vectors_clone = vectors.clone()
         def shortest = []
         double shortest_length
-        Vector candidate_shortest
+        MyVector candidate_shortest
         
         while(vectors_clone.size() > 0) {
             candidate_shortest = vectors_clone.min{ (it - ref).length() }
@@ -41,5 +44,39 @@ class Vector {
         }
         
         return shortest
+    }
+    
+    void swapY(MyVector other) {
+        double temp = other.y
+        other.y = y
+        y = temp
+    }
+    
+    int[] getQuadrants() {
+        def quadrants = []
+        if (x >= 0) {
+            if (y >= 0)
+                quadrants.add(1)
+            if (y <= 0)
+                quadrants.add(4)
+        }
+        if (x <= 0) {
+            if (y >= 0)
+                quadrants.add(2)
+            if (y <= 0)
+                quadrants.add(3)
+        }
+        return quadrants
+    }
+    
+    void swapX(MyVector other) {
+        double temp = other.x
+        other.x = x
+        x = temp
+    }
+    
+    void swapXY(MyVector other) {
+        swapX(other)
+        swapY(other)
     }
 }
