@@ -18,8 +18,8 @@ class CashTill {
     void sale(BigDecimal amount, BigDecimal cash_given) {
         // First check that amount and cash_given are multiples
         // of pennies
-        checkValidValue(amount)
-        checkValidValue(cash_given)
+        amount = checkValidValue(amount)
+        cash_given = checkValidValue(cash_given)
         
         change_to_give = cash_given - amount
         if (change_to_give < 0)
@@ -63,9 +63,10 @@ class CashTill {
         }
     }
     
-    def checkValidValue(BigDecimal value) {
-        if (value.trunc(2) != value || value < 0)
+    BigDecimal checkValidValue(BigDecimal value) {
+        if (value < 0)
             throw new BadInput(value)
+        return value.precision(2)
     }
 }
 

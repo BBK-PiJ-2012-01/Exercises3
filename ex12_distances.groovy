@@ -1,7 +1,6 @@
 println "Enter reference point - "
 MyVector reference = IOVector.getVector()
 println "\nEnter three other points - "
-println "ref is: " + reference.getString()
 MyVector[] input_vectors = IOVector.getNVectors(3)
 
 def shortest_vectors = MyVector.getShortestVectorsFromRef(input_vectors, reference)

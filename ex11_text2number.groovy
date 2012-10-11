@@ -1,5 +1,5 @@
 print "Enter string: "
-String str = System.console().readLine().toLowerCase()
+String str = System.console().readLine().toLowerCase().replaceAll(",","")
        
 
 // Find the position of the decimal point.
@@ -31,5 +31,4 @@ for (index in 0..str.length()-1) {
 num *= 10**(point_position-str.length()) as BigDecimal
     
 IOGeneric.printResult(num as String)
-
 
